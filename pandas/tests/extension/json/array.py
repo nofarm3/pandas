@@ -22,6 +22,7 @@ from typing import Any, Mapping, Type
 import numpy as np
 
 from pandas.core.dtypes.common import pandas_dtype
+from pandas.api.types import is_bool_dtype
 
 import pandas as pd
 from pandas.api.extensions import ExtensionArray, ExtensionDtype
@@ -80,7 +81,7 @@ class JSONArray(ExtensionArray):
             return type(self)(self.data[item])
         else:
             item = pd.api.indexers.check_array_indexer(self, item)
-            if pd.api.types.is_bool_dtype(item.dtype):
+            if is_bool_dtype(item.dtype):
                 return self._from_sequence([x for x, m in zip(self, item) if m])
             # integer
             return type(self)([self.data[i] for i in item])
