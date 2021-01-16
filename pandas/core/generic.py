@@ -60,6 +60,7 @@ from pandas.compat.numpy import function as nv
 from pandas.errors import AbstractMethodError, InvalidIndexError
 from pandas.util._decorators import doc, rewrite_axis_style_signature
 from pandas.util._validators import validate_bool_kwarg, validate_fillna_kwargs
+from pandas.api.types import CategoricalDtype
 
 from pandas.core.dtypes.common import (
     ensure_int64,
@@ -5819,7 +5820,7 @@ class NDFrame(PandasObject, SelectionMixin, indexing.IndexingMixin):
 
         Convert to ordered categorical type with custom ordering:
 
-        >>> cat_dtype = pd.api.types.CategoricalDtype(
+        >>> cat_dtype = CategoricalDtype(
         ...     categories=[2, 1], ordered=True)
         >>> ser.astype(cat_dtype)
         0    1
